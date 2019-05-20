@@ -9,13 +9,21 @@ public class Main {
     public static void main(String[] args) {
 
         String ourString = "ka2K  KAK  AKil  676  43m il";
-        System.out.println("Our String: " + ourString);
-        System.out.println("RemoveDigits: " + StringObfuscator.processString(new RemoveDigits(), ourString));
-        System.out.println("RemoveWhitespaces: " + StringObfuscator.processString(new RemoveWhitespaces(), ourString));
-        System.out.println("ToLowerCase: " + StringObfuscator.processString(new ToLowerCase(), ourString));
-        System.out.println("ToUpperCase: " + StringObfuscator.processString(new ToUpperCase(), ourString));
+        System.out.println("StringToProcess: " + ourString);
 
+        // our algorithms:
+        RemoveDigits removeDigits = new RemoveDigits();
+        RemoveWhitespaces removeWhitespaces = new RemoveWhitespaces();
+        ToLowerCase toLowerCase = new ToLowerCase();
+        ToUpperCase toUpperCase = new ToUpperCase();
 
+        StringObfuscator stringObfuscator = new StringObfuscator.Obfuscator()
+                .setValue(ourString)
+                .processString(removeDigits)
+                .processString(removeWhitespaces)
+                .processString(toUpperCase)
+                .obfuscate();
+
+        System.out.println(stringObfuscator);
     }
-
 }
